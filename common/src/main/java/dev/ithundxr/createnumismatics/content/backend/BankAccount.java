@@ -192,6 +192,9 @@ public class BankAccount implements MenuProvider, IDeductable, IAuthorizationChe
     public int getBalance() {
         return balance;
     }
+    public long getAdditionalBalance() {
+        return additionalBalance;
+    }
 
     public void setBalance(int balance) {
         if (balance > MAX_STANDARD_BALANCE && !clientSide) {
@@ -305,7 +308,7 @@ public class BankAccount implements MenuProvider, IDeductable, IAuthorizationChe
             return null;
         }
         account.balance = nbt.getInt("balance");
-        account.additionalBalance = nbt.getLong("additionalBalance");
+        account.additionalBalance = nbt.getLong("AdditionalBalance");
         if (account.trustList != null && nbt.contains("TrustList")) {
             account.trustList.clear();
             account.trustList.addAll(NBTHelper.readCompoundList(
